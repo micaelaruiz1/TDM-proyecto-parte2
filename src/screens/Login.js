@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { auth } from '../firebase/config';
@@ -7,6 +7,14 @@ function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        props.navigation.navigate('HomeMenu')
+      }
+    })
+  }, [])
 
   function onSubmit(email, pass) {
     auth.signInWithEmailAndPassword(email, pass)

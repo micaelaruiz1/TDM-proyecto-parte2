@@ -21,8 +21,14 @@ function Register(props) {
           })
             .then()
             .catch(e => console.log(e))
-          props.navigation.navigate('Login')
-        })
+    
+          auth.signOut()
+            .then(response => {
+              props.navigation.navigate('Login')
+            })
+            .catch(e => console.log(e))
+
+          })
         .catch(error => {
           setRegisterError('Fallo en el registro.')
         })
