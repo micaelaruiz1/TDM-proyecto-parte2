@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { View, Text, Pressable, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import { auth, db } from '../firebase/config';
+import Post from '../components/post';
 
 function Profile(props) {
   const [username, setUsername] = useState('');
@@ -78,15 +78,7 @@ function Profile(props) {
         <FlatList
           data={posteos}
           keyExtractor={item => item.id}
-          renderItem={({item}) =>
-            <View style={styles.posteo}>
-              <Text style={styles.email}>{item.data.email}</Text>
-              <Text style={styles.descripcion}>{item.data.descripcion}</Text>
-              <Text style={styles.likes}>
-                Me gusta ({item.data.likes.length})
-              </Text>
-            </View>
-          }
+          renderItem={({ item }) => <Post post={item} navigation={props.navigation} />}
         />
       }
     </View>
@@ -132,27 +124,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 15,
-  },
-  posteo: {
-    backgroundColor: '#fafafa',
-    borderWidth: 1,
-    borderColor: '#dbdbdb',
-    borderRadius: 8,
-    padding: 15,
-    marginBottom: 12,
-  },
-  email: {
-    fontWeight: 'bold',
-    fontSize: 14,
-    marginBottom: 6,
-  },
-  descripcion: {
-    fontSize: 15,
-    marginBottom: 12,
-  },
-  likes: {
-    color: '#0095f6',
-    marginTop: 10,
   },
 });
 

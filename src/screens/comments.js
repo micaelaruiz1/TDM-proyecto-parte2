@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import { auth, db } from '../firebase/config';
@@ -49,7 +48,7 @@ function Comments(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Comentarios</Text>
+      <Text style={styles.titulo}>Comentarios ({comentarios.length})</Text>
 
       <TextInput
         style={styles.input}
@@ -73,7 +72,7 @@ function Comments(props) {
         <FlatList
           data={comentarios}
           keyExtractor={item => item.id}
-          renderItem={({item}) =>
+          renderItem={({ item }) =>
             <View style={styles.comentario}>
               <Text style={styles.email}>{item.data.email}</Text>
               <Text style={styles.descripcion}>{item.data.descripcion}</Text>

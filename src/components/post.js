@@ -1,11 +1,23 @@
-import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 import { auth, db } from '../firebase/config';
-import comments from '../screens/comments';
+import React, { useState, useEffect } from 'react';
 
 function Post(props) {
   const likeado = props.post.data.likes.includes(auth.currentUser.email);
+  const [cantComentarios, setCantComentarios] = useState(0);
+
+  useEffect(() => {
+    db.collection('comments')
+      .where('postId', '==', props.post.id)
+      .onSnapshot(docs => {
+        let lista = [];
+        docs.forEach(doc => {
+          lista.push(doc.id);
+        });
+        setCantComentarios(lista.length);
+      });
+  }, []);
 
   function likear() {
     db.collection('posts')
@@ -29,14 +41,16 @@ function Post(props) {
       <Text style={styles.descripcion}>{props.post.data.descripcion}</Text>
 
       <View style={styles.botones}>
-        <Pressable onPress={() => likeado ? deslikear() : likear()}>
-          <Text style={styles.botonLike}>
-            {likeado ? 'Ya no me gusta' : 'Me gusta'} ({props.post.data.likes.length})
+        <Pressable onPress={() => likeado ? deslikear() : likear()}
+          style={likeado ? styles.botonLikeado : styles.botonDislike}>
+          <Text>
+            ({props.post.data.likes.length}) {likeado ? 'Me gusta ♥' : 'Me gusta ♡'}
+
           </Text>
         </Pressable>
 
-        <Pressable onPress={() => props.navigation.navigate('Comments', { id: props.post.id })}>
-          <Text style={styles.accion}>Comentar</Text>
+        <Pressable onPress={() => props.navigation.navigate('Home', { screen: 'Comments', params: { id: props.post.id } })}>
+          <Text style={styles.comment}>Comentarios {cantComentarios}</Text>
         </Pressable>
       </View>
     </View>
@@ -48,6 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: '#dbdbdb',
     borderRadius: 8,
+    borderWidth: 1,
     padding: 15,
     marginBottom: 12,
   },
@@ -63,12 +78,29 @@ const styles = StyleSheet.create({
   botones: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    borderTopWidth: 1,
     borderTopColor: '#efefef',
     paddingTop: 10,
   },
-  botonLike: {
-    color: '#0095f6',
-    fontWeight: 'bold',
+  botonLikeado: {
+    backgroundColor: '#0095f6',
+    color: 'white',
+    borderRadius: 8,
+    padding: 2,
+    alignItems: 'center',
+  },
+  botonDislike: {
+    backgroundColor: '#b6bec3',
+    borderRadius: 8,
+    padding: 2,
+    alignItems: 'center',
+  },
+  comment: {
+    backgroundColor: '#0095f6',
+    color: 'white',
+    borderRadius: 8,
+    padding: 2,
+    alignItems: 'center',
   },
 });
 
