@@ -1,7 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 import { auth, db } from '../firebase/config';
-import React, { useState, useEffect } from 'react';
 
 function Post(props) {
   const likeado = props.post.data.likes.includes(auth.currentUser.email);
@@ -43,14 +43,13 @@ function Post(props) {
       <View style={styles.botones}>
         <Pressable onPress={() => likeado ? deslikear() : likear()}
           style={likeado ? styles.botonLikeado : styles.botonDislike}>
-          <Text>
+          <Text style={likeado ? styles.textoLike : styles.textoDislike}>
             ({props.post.data.likes.length}) {likeado ? 'Me gusta ♥' : 'Me gusta ♡'}
-
           </Text>
         </Pressable>
 
-        <Pressable onPress={() => props.navigation.navigate('Home', { screen: 'Comments', params: { id: props.post.id } })}>
-          <Text style={styles.comment}>Comentarios {cantComentarios}</Text>
+        <Pressable style={styles.comment} onPress={() => props.navigation.navigate('Home', { screen: 'Comments', params: { id: props.post.id } })}>
+          <Text style={styles.commentText}>Comentarios {cantComentarios}</Text>
         </Pressable>
       </View>
     </View>
@@ -84,7 +83,6 @@ const styles = StyleSheet.create({
   },
   botonLikeado: {
     backgroundColor: '#0095f6',
-    color: 'white',
     borderRadius: 8,
     padding: 2,
     alignItems: 'center',
@@ -97,10 +95,21 @@ const styles = StyleSheet.create({
   },
   comment: {
     backgroundColor: '#0095f6',
-    color: 'white',
     borderRadius: 8,
     padding: 2,
     alignItems: 'center',
+  },
+  commentText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  textoLike: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  textoDislike: {
+    color: 'black',
+    fontWeight: 'bold',
   },
 });
 
