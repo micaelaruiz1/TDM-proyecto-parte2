@@ -87,25 +87,25 @@ function Comments(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#141414',
     padding: 20,
   },
   titulo: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#f6ebec',
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#dbdbdb',
     borderRadius: 6,
-    backgroundColor: '#fafafa',
+    backgroundColor: '#333',
+    color: 'white',
     padding: 10,
     marginBottom: 15,
     minHeight: 70,
   },
   boton: {
-    backgroundColor: '#0095f6',
+    backgroundColor: '#E50914',
     borderRadius: 8,
     padding: 12,
     alignItems: 'center',
@@ -116,23 +116,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   error: {
-    color: 'red',
-    marginBottom: 10,
+    color: '#e84f03',
+    marginTop: 10,
   },
   comentario: {
-    backgroundColor: '#fafafa',
-    borderWidth: 1,
-    borderColor: '#dbdbdb',
+    backgroundColor: '#333',
     borderRadius: 8,
     padding: 15,
     marginBottom: 12,
   },
   email: {
     fontWeight: 'bold',
+    color: 'white',
     fontSize: 14,
     marginBottom: 6,
   },
   descripcion: {
+    color: '#dfd5d5',
     fontSize: 15,
   },
 });

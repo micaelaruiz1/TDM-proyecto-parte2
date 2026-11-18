@@ -43,72 +43,67 @@ function Post(props) {
       <View style={styles.botones}>
         <Pressable onPress={() => likeado ? deslikear() : likear()}
           style={likeado ? styles.botonLikeado : styles.botonDislike}>
-          <Text style={likeado ? styles.textoLike : styles.textoDislike}>
-            ({props.post.data.likes.length}) {likeado ? 'Me gusta ♥' : 'Me gusta ♡'}
+          <Text style={styles.textoBoton}>
+            {likeado ? '♥' : '♡'} Me gusta ({props.post.data.likes.length})
           </Text>
         </Pressable>
 
-        <Pressable style={styles.comment} onPress={() => props.navigation.navigate('Home', { screen: 'Comments', params: { id: props.post.id } })}>
-          <Text style={styles.commentText}>Comentarios {cantComentarios}</Text>
+        <Pressable style={styles.botonComentarios} onPress={() => props.navigation.navigate('Home', { screen: 'Comments', params: { id: props.post.id } })}>
+          <Text style={styles.textoBoton}>Comentarios ({cantComentarios})</Text>
         </Pressable>
       </View>
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    borderColor: '#dbdbdb',
-    borderRadius: 8,
-    borderWidth: 1,
-    padding: 15,
-    marginBottom: 12,
+    backgroundColor: '#1b1b1b',
+    borderRadius: 6,
+    padding: 16,
+    marginBottom: 14,
   },
   email: {
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 14,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   descripcion: {
+    color: '#e5e5e5',
     fontSize: 15,
-    marginBottom: 12,
+    marginBottom: 14,
   },
   botones: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderTopWidth: 1,
-    borderTopColor: '#efefef',
-    paddingTop: 10,
+    borderTopColor: '#333',
+    paddingTop: 12,
   },
   botonLikeado: {
-    backgroundColor: '#0095f6',
-    borderRadius: 8,
-    padding: 2,
-    alignItems: 'center',
+    backgroundColor: '#E50914',
+    borderRadius: 4,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
   },
   botonDislike: {
-    backgroundColor: '#b6bec3',
-    borderRadius: 8,
-    padding: 2,
-    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#808080',
+    borderRadius: 4,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
   },
-  comment: {
-    backgroundColor: '#0095f6',
-    borderRadius: 8,
-    padding: 2,
-    alignItems: 'center',
+  botonComentarios: {
+    borderWidth: 1,
+    borderColor: '#808080',
+    borderRadius: 4,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
   },
-  commentText: {
+  textoBoton: {
     color: 'white',
-    fontWeight: 'bold',
-  },
-  textoLike: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  textoDislike: {
-    color: 'black',
     fontWeight: 'bold',
   },
 });

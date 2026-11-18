@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, StyleSheet,Image } from 'react-native';
 import { db } from '../firebase/config';
 import Post from '../components/post';
 
@@ -26,29 +26,42 @@ function Home(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Home</Text>
-
+      <Image
+        style={styles.logo}
+        source={require('../../assets/logo.png')}
+        resizeMode='contain'
+      />
       {loading ?
-        <ActivityIndicator size='large' color='#0095f6' /> :
+        <ActivityIndicator size='large' color='#E50914' /> :
+        <View>
+        <Text style={styles.subtitulo}>Que opina la gente?</Text>
         <FlatList
           data={posteos}
           keyExtractor={item => item.id}
           renderItem={({ item }) => <Post post={item} navigation={props.navigation} />}
         />
+        </View>
       }
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#141414',
     padding: 20,
   },
-  titulo: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  logo: {
+  height: 90,
+  borderRadius: 20,
+  marginBottom: 30,
+  alignSelf: 'center',
+},
+  subtitulo: {
+    color: '#b3b3b3',
+    fontSize: 14,
+    marginTop: 6,
     marginBottom: 20,
   },
 });

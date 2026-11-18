@@ -14,8 +14,24 @@ const Stack = createNativeStackNavigator();
 function HomeStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Feed" component={Home} options={{ headerShown: false }} />
-      <Stack.Screen name="Comments" component={Comments} options={{ title: 'Comentarios' }} />
+      <Stack.Screen
+        name="Feed"
+        component={Home}
+        options={{
+          headerShown: false
+        }}
+      />
+
+      <Stack.Screen
+        name="Comments"
+        component={Comments}
+        options={{
+          title: 'Comentarios',
+          headerStyle: { backgroundColor: '#141414' }, 
+          headerTintColor: 'white', 
+          //le pregunte a la IA como pintar el header, flecha y titulo. 
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -40,5 +56,6 @@ function HomeMenu() {
     </Tab.Navigator>
   );
 }
+
 
 export default HomeMenu;

@@ -25,64 +25,67 @@ function NewPost(props) {
     }
   }
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>Nuevo posteo</Text>
+return (
+  <View style={styles.container}>
+    <Text style={styles.titulo}>Nueva reseña</Text>
+    <Text style={styles.subtitulo}>Contale a la comunidad qué viste</Text>
 
-      <Text style={styles.label}>Descripción</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType='default'
-        placeholder='Qué querés compartir?'
-        onChangeText={text => setDescripcion(text)}
-        value={descripcion}
-      />
-      {error !== '' ? <Text style={styles.error} >{error}</Text> : null}
+    <TextInput
+      style={styles.input}
+      keyboardType='default'
+      placeholder='¿Qué película viste y qué te pareció?'
+      onChangeText={text => setDescripcion(text)}
+      value={descripcion}
+    />
+    {error !== '' ? <Text style={styles.error}>{error}</Text> : null}
 
-      <Pressable style={styles.boton} onPress={() => crearPost(descripcion)}>
-        <Text style={styles.textoBoton}>Publicar</Text>
-      </Pressable>
-    </View>
-  );
+    <Pressable style={styles.boton} onPress={() => crearPost(descripcion)}>
+      <Text style={styles.textoBoton}>Publicar</Text>
+    </Pressable>
+  </View>
+);
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#141414',
     padding: 20,
+    paddingTop: 50,
   },
   titulo: {
-    fontSize: 24,
+    color: 'white',
+    fontSize: 28,
     fontWeight: 'bold',
+  },
+  subtitulo: {
+    color: '#b3b3b3',
+    fontSize: 14,
+    marginTop: 4,
     marginBottom: 20,
   },
-  label: {
-    fontSize: 14,
-    marginBottom: 5,
+  input: {
+    backgroundColor: '#333',
+    color: 'white',
+    borderRadius: 4,
+    padding: 14,
+    minHeight: 120,
+    marginBottom: 12,
   },
   error: {
-    color: 'red',
+    color: '#e87c03',
     marginBottom: 10,
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#dbdbdb',
-    borderRadius: 6,
-    backgroundColor: '#fafafa',
-    padding: 10,
-    marginBottom: 15,
-    minHeight: 100,
-  },
   boton: {
-    backgroundColor: '#0095f6',
-    borderRadius: 8,
-    padding: 12,
+    backgroundColor: '#E50914',
+    borderRadius: 4,
+    padding: 14,
     alignItems: 'center',
   },
   textoBoton: {
     color: 'white',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
