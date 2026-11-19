@@ -7,22 +7,19 @@ function Home(props) {
   const [posteos, setPosteos] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-  db.collection('posts')
-    .orderBy('createdAt', 'desc')
-    .onSnapshot(docs => {
-      let posts = [];
-
-      docs.forEach(doc => {
-        posts.push({
-          id: doc.id,
-          data: doc.data()
+    db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(
+      docs => {
+        let posts = [];
+        docs.forEach(doc => {
+          posts.push({
+            id: doc.id,
+            data: doc.data()
+          });
         });
+        setPosteos(posts);
+        setLoading(false);
       });
-
-      setPosteos(posts);
-      setLoading(false);
-    });
-}, []);
+    }, []);
 
   return (
   <View style={styles.container}>

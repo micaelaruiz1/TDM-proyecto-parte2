@@ -28,6 +28,10 @@ function Login(props) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.titulo}>Login</Text>
+      
+
+
       <Text style={styles.label}>Email</Text>
       <TextInput
         style={styles.field}
@@ -100,6 +104,11 @@ const styles = StyleSheet.create({
   },
   textoLink: {
     color: '#0095f6',
+  },
+  titulo: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
 });
 
