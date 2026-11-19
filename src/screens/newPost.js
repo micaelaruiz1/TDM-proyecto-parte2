@@ -16,6 +16,7 @@ function NewPost(props) {
         descripcion: descripcion,
         likes: [],
         createdAt: Date.now(),
+        
       })
         .then(() => {
           setDescripcion('');
