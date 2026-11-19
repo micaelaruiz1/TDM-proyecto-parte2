@@ -37,21 +37,21 @@ function HomeStack() {
 }
 function HomeMenu() {
   return (
-    <Tab.Navigator screenOptions={{ tabBarShowLabel: false, headerShown: false }}>
+    <Tab.Navigator screenOptions={{ tabBarShowLabel: false, headerShown: false ,tabBarStyle: { backgroundColor: '#e41717',borderTopColor: '#e41717'}}}>
       <Tab.Screen
         name="Home"
         component={HomeStack}
-        options={{ tabBarIcon: () => <FontAwesome name="home" size={24} color="black" /> }}
+        options={{ tabBarIcon: () => <FontAwesome name="home" size={24} color="white" /> }}
       />
       <Tab.Screen
         name="Nuevo Posteo"
         component={NewPost}
-        options={{ tabBarIcon: () => <FontAwesome name="plus-circle" size={24} color="black" /> }}
+        options={{ tabBarIcon: () => <FontAwesome name="plus-circle" size={24} color="white" /> }}
       />
       <Tab.Screen
         name="Perfil"
         component={Profile}
-        options={{ tabBarIcon: () => <FontAwesome name="user" size={24} color="black" /> }}
+        options={{ tabBarIcon: () => <FontAwesome name="user" size={24} color="white" /> }}
       />
     </Tab.Navigator>
   );

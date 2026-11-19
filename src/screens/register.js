@@ -19,10 +19,8 @@ function Register(props) {
             email: email,
             username: username,
           })
-            .then()
-            .catch(e => console.log(e))
-
-          auth.signOut()
+            .then(()=>{auth.signOut()})
+    
             .then(response => {
               props.navigation.navigate('Login')
             })
