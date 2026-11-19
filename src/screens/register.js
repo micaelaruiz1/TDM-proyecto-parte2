@@ -12,7 +12,11 @@ function Register(props) {
   function onSubmit(email, pass) {
     if (username === '') {
       setRegisterError('El nombre de usuario es obligatorio.')
-    } else {
+    }else if (pass ==="") {
+      setRegisterError('La contraseña es obligatoria.')
+    }else if (email ==="") { 
+      setRegisterError('El email es obligatorio.')
+    }else {
       auth.createUserWithEmailAndPassword(email, pass)
         .then(response => {
           db.collection('users').add({
