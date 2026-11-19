@@ -33,7 +33,7 @@ function Home(props) {
       />
       {loading ?
         <ActivityIndicator size='large' color='#E50914' /> :
-        <View>
+        <View style={styles.flatList}>
         <Text style={styles.subtitulo}>Que opina la gente?</Text>
         <FlatList
           data={posteos}
@@ -63,6 +63,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 6,
     marginBottom: 20,
+  },
+  flatList: {
+    flex: 1,
+    width: '100%',
   },
 });
 export default Home;
