@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet,Image } from 'react-native';
 import { db } from '../firebase/config';
-import Post from '../components/post';
+import Post from '../components/Post';
 
 function Home(props) {
   const [posteos, setPosteos] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Pressable, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import { auth, db } from '../firebase/config';
-import Post from '../components/post';
+import Post from '../components/Post';
 
 function Profile(props) {
   const [username, setUsername] = useState('');

@@ -112,6 +112,11 @@ const styles = StyleSheet.create({
   textoLink: {
     color: '#E50914',
   },
+  titulo: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
 });
 
 export default Login;

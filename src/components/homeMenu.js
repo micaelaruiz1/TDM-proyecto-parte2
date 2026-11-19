@@ -3,10 +3,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { FontAwesome } from '@expo/vector-icons';
 
-import Home from '../screens/home';
-import NewPost from '../screens/newPost';
-import Profile from '../screens/profile';
-import Comments from '../screens/comments';
+import Home from '../screens/Home';
+import NewPost from '../screens/NewPost';
+import Profile from '../screens/Profile';
+import Comments from '../screens/Comments';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
