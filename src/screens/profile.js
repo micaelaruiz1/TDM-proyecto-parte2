@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { View, Text, Pressable, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import { auth, db } from '../firebase/config';
+import Post from '../components/post';
 
 function Profile(props) {
   const [username, setUsername] = useState('');
@@ -74,19 +74,11 @@ function Profile(props) {
       <Text style={styles.subtitulo}>Mis posteos</Text>
 
       {loading ?
-        <ActivityIndicator size='large' color='#0095f6' /> :
+        <ActivityIndicator size='large' color='#E50914' />  :
         <FlatList
           data={posteos}
           keyExtractor={item => item.id}
-          renderItem={({item}) =>
-            <View style={styles.posteo}>
-              <Text style={styles.email}>{item.data.email}</Text>
-              <Text style={styles.descripcion}>{item.data.descripcion}</Text>
-              <Text style={styles.likes}>
-                Me gusta ({item.data.likes.length})
-              </Text>
-            </View>
-          }
+          renderItem={({ item }) => <Post post={item} navigation={props.navigation} />}
         />
       }
     </View>
@@ -96,25 +88,34 @@ function Profile(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#141414',
     padding: 20,
   },
   titulo: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#f6ebec',
     marginBottom: 20,
+  },
+  subtitulo: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#f6ebec',
+    marginBottom: 15,
   },
   label: {
     fontSize: 14,
     fontWeight: 'bold',
+    color: '#b3b3b3',
     marginBottom: 5,
   },
   dato: {
     fontSize: 16,
     marginBottom: 15,
+    color: 'white',
   },
   boton: {
-    backgroundColor: '#0095f6',
+    backgroundColor: '#E50914',
     borderRadius: 8,
     padding: 12,
     alignItems: 'center',
@@ -125,34 +126,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   error: {
-    color: 'red',
+    color: '#e80303',
     marginBottom: 10,
-  },
-  subtitulo: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 15,
-  },
-  posteo: {
-    backgroundColor: '#fafafa',
-    borderWidth: 1,
-    borderColor: '#dbdbdb',
-    borderRadius: 8,
-    padding: 15,
-    marginBottom: 12,
-  },
-  email: {
-    fontWeight: 'bold',
-    fontSize: 14,
-    marginBottom: 6,
-  },
-  descripcion: {
-    fontSize: 15,
-    marginBottom: 12,
-  },
-  likes: {
-    color: '#0095f6',
-    marginTop: 10,
   },
 });
 

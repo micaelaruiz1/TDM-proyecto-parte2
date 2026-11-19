@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable } from 'react-native';
+import { View, Text, TextInput, Pressable, Image } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { auth, db } from '../firebase/config';
 
@@ -21,27 +21,30 @@ function Register(props) {
           })
             .then()
             .catch(e => console.log(e))
-    
+
           auth.signOut()
             .then(response => {
               props.navigation.navigate('Login')
             })
             .catch(e => console.log(e))
 
-          })
+        })
         .catch(error => {
-          setRegisterError('Fallo en el registro.')
+          setRegisterError(error.message)
         })
     }
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Register</Text>
-
+      <Image
+        style={styles.logo}
+        source={require('../../assets/logo2.png')}
+        resizeMode='contain'
+      />
       <Text style={styles.label}>Email</Text>
       <TextInput
-        style={styles.field}
+        style={styles.input}
         keyboardType='email-address'
         placeholder='Ingrese su email'
         onChangeText={text => setEmail(text)}
@@ -50,7 +53,7 @@ function Register(props) {
 
       <Text style={styles.label}>Nombre de usuario</Text>
       <TextInput
-        style={styles.field}
+        style={styles.input}
         keyboardType='default'
         placeholder='Ingrese su username'
         onChangeText={text => setUsername(text)}
@@ -59,7 +62,7 @@ function Register(props) {
 
       <Text style={styles.label}>Contraseña</Text>
       <TextInput
-        style={styles.field}
+        style={styles.input}
         keyboardType='default'
         placeholder='Ingrese su contraseña'
         secureTextEntry={true}
@@ -83,24 +86,25 @@ function Register(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#141414',
     justifyContent: 'center',
     padding: 20,
   },
   label: {
     fontSize: 14,
     marginBottom: 5,
+    color: '#b3b3b3',
   },
-  field: {
-    borderWidth: 1,
-    borderColor: '#dbdbdb',
-    borderRadius: 6,
-    backgroundColor: '#fafafa',
-    padding: 10,
-    marginBottom: 15,
+  input: {
+    backgroundColor: '#333',
+    color: 'white',
+    borderRadius: 4,
+    padding: 14,
+    minHeight: 50,
+    marginBottom: 12,
   },
   boton: {
-    backgroundColor: '#0095f6',
+    backgroundColor: '#E50914',
     borderRadius: 8,
     padding: 12,
     alignItems: 'center',
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   error: {
-    color: 'red',
+    color: '#e84f03',
     marginTop: 10,
   },
   link: {
@@ -119,13 +123,13 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   textoLink: {
-    color: '#0095f6',
+    color: '#E50914',
   },
-  titulo: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
+ logo: {
+  height: 250,
+  width:250,
+  alignSelf: 'center',
+},
 });
 
 export default Register;
